@@ -11,6 +11,14 @@ namespace FirstMonoGame
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        Random random = new Random();
+        int _x1;
+        int _y1;
+        int _x2;
+        int _y2;
+        int _x3;
+        int _y3;
+        int count = 60;
         Texture2D dino1;
         Texture2D dino2;
         Texture2D dino3;
@@ -69,8 +77,20 @@ namespace FirstMonoGame
             _spriteBatch.Draw(dino2, new Vector2(650, _graphics.PreferredBackBufferHeight - dino2.Height - 230), Color.White);
             _spriteBatch.Draw(dino3, new Vector2(700, _graphics.PreferredBackBufferHeight - dino3.Height), Color.White);
             _spriteBatch.Draw(dino4, new Vector2(370, _graphics.PreferredBackBufferHeight - dino4.Height), Color.White);
-            _spriteBatch.Draw(dinoKilla, new Vector2(0, -150), Color.White);
-
+            count++;
+            if (count >= 60)
+            {
+                _x1 = random.Next(_graphics.PreferredBackBufferWidth - dinoKilla.Width);
+                _y1 = random.Next(_graphics.PreferredBackBufferHeight + 150 - dinoKilla.Height);
+                _x2 = random.Next(_graphics.PreferredBackBufferWidth - dinoKilla.Width);
+                _y2 = random.Next(_graphics.PreferredBackBufferHeight + 150 - dinoKilla.Height);
+                _x3 = random.Next(_graphics.PreferredBackBufferWidth - dinoKilla.Width);
+                _y3 = random.Next(_graphics.PreferredBackBufferHeight + 150 - dinoKilla.Height);
+                count = 0;
+            }
+            _spriteBatch.Draw(dinoKilla, new Vector2(_x1, _y1), Color.White);
+            _spriteBatch.Draw(dinoKilla, new Vector2(_x2, _y2), Color.White);
+            _spriteBatch.Draw(dinoKilla, new Vector2(_x3, _y3), Color.White);
 
             _spriteBatch.End();
 
